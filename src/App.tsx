@@ -1,33 +1,34 @@
 import Desserts from './Desserts';
 import Cart from './Cart';
 
-import { CartItem } from './Cart';
+import { CartItemType } from './Cart';
 
 import { useState } from 'react';
 
 function App() {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const [cartItems, setCartItems] = useState<CartItemType[]>([]);
 
-    function handleAddDessert(dessert: Dessert) {
-        console.log(dessert);
+    function handleAddToCart(dessert: Dessert) {
+        const newItem = {
+            name: dessert.name,
+            image: dessert.image.thumbnail,
+            price: dessert.price,
+            amount: 1,
+        };
 
         setCartItems(prevState => {
-            return [
-                ...prevState,
-                {
-                    name: dessert.name,
-                    image: dessert.image.thumbnail,
-                    price: dessert.price,
-                    amount: 1,
-                },
-            ];
+            return [...prevState, newItem];
         });
     }
 
+    function handleRemoveDessert(name: string) {
+        setCartItems(prevState => prevState.filter(item => item.name !== name));
+    }
+
     return (
-        <div className="mx-6 py-6 grid gap-8 lg:grid-cols-2 items-start text-rose-900">
-            <Desserts onAddDessert={handleAddDessert} />
-            <Cart cartItems={cartItems} />
+        <div className="max-w-[1216px] mx-6 py-6 grid gap-8 lg:grid-cols-[1fr_384px] items-start text-rose-900 lg:mx-auto">
+            <Desserts cartItems={cartItems} onAddToCart={handleAddToCart} />
+            <Cart cartItems={cartItems} onRemoveItem={handleRemoveDessert} />
         </div>
     );
 }
