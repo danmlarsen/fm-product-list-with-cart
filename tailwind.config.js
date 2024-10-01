@@ -4,6 +4,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 export default {
     content: ['index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
+        screens: {
+            sm: '600px',
+            md: '768px',
+            lg: '1260px',
+        },
         extend: {
             colors: {
                 rose: {
