@@ -1,11 +1,11 @@
-import { Dessert } from './App';
+import { DessertType } from './Desserts';
 import { CartItemType } from './Cart';
 import AddToCartButton from './components/AddToCartButton';
 
 type AppProps = {
-    dessert: Dessert;
+    dessert: DessertType;
     cartItems: CartItemType[];
-    onAddToCart: (dessert: Dessert) => void;
+    onAddToCart: (dessert: DessertType) => void;
     onDecrement: (name: string) => void;
     onIncrement: (name: string) => void;
 };

@@ -13,9 +13,10 @@ export interface CartItemType {
 type AppProps = {
     cartItems: CartItemType[];
     onRemoveItem: (name: string) => void;
+    onConfirmOrder: () => void;
 };
 
-export default function Cart({ cartItems, onRemoveItem }: AppProps) {
+export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppProps) {
     const orderTotal = cartItems.reduce((acc, cur) => acc + cur.price * cur.amount, 0);
     const orderItemAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
 
@@ -40,14 +41,14 @@ export default function Cart({ cartItems, onRemoveItem }: AppProps) {
                         <span>Order Total</span>
                         <span className="text-2xl font-bold">${orderTotal.toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-center items-center gap-2">
+                    <div className="p-4 flex justify-center items-center gap-2 bg-rose-50 rounded-lg">
                         <img src={IconCarbonNeutral} alt="Tree icon" />
                         <p>
                             This is a <strong>carbon-neutral</strong> delivery
                         </p>
                     </div>
                     <div>
-                        <Button>Confirm Order</Button>
+                        <Button onClick={onConfirmOrder}>Confirm Order</Button>
                     </div>
                 </>
             )}

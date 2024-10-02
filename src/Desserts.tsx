@@ -2,12 +2,23 @@ import desserts from './data.json';
 
 import DessertItem from './DessertItem';
 
-import { Dessert } from './App';
 import { CartItemType } from './Cart';
+
+export interface DessertType {
+    name: string;
+    category: string;
+    price: number;
+    image: {
+        thumbnail: string;
+        mobile: string;
+        tablet: string;
+        desktop: string;
+    };
+}
 
 type AppProps = {
     cartItems: CartItemType[];
-    onAddToCart: (dessert: Dessert) => void;
+    onAddToCart: (dessert: DessertType) => void;
     onDecrement: (name: string) => void;
     onIncrement: (name: string) => void;
 };

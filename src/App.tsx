@@ -1,14 +1,22 @@
-import Desserts from './Desserts';
-import Cart from './Cart';
+import { useEffect, useState } from 'react';
 
-import { CartItemType } from './Cart';
-
-import { useState } from 'react';
+import Desserts, { DessertType } from './Desserts';
+import Cart, { CartItemType } from './Cart';
+import ConfirmedOrder from './components/ConfirmedOrder';
+import Modal from './components/Modal';
 
 function App() {
-    const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+    const [cartItems, setCartItems] = useState<CartItemType[]>(() => {
+        const storedValue = localStorage.getItem('cartItems');
+        return storedValue ? JSON.parse(storedValue) : [];
+    });
+    const [orderConfirmed, setOrderConfirmed] = useState(false);
 
-    function handleAddToCart(dessert: Dessert) {
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
+
+    function handleAddToCart(dessert: DessertType) {
         const newItem = {
             name: dessert.name,
             image: dessert.image.thumbnail,
@@ -21,7 +29,7 @@ function App() {
         });
     }
 
-    function handleRemoveDessert(name: string) {
+    function handleRemoveFromCart(name: string) {
         setCartItems(prevState => prevState.filter(item => item.name !== name));
     }
 
@@ -33,24 +41,28 @@ function App() {
         setCartItems(prevState => prevState.map(item => (item.name === name ? { ...item, amount: item.amount-- } : item)).filter(item => item.amount > 0));
     }
 
-    return (
-        <div className="max-w-[1216px] mx-6 py-6 grid gap-8 lg:grid-cols-[1fr_384px] items-start text-rose-900 lg:mx-auto">
-            <Desserts cartItems={cartItems} onAddToCart={handleAddToCart} onDecrement={handleDecrement} onIncrement={handleIncrement} />
-            <Cart cartItems={cartItems} onRemoveItem={handleRemoveDessert} />
-        </div>
-    );
-}
+    function handleConfirmOrder() {
+        setOrderConfirmed(true);
+    }
 
-export interface Dessert {
-    name: string;
-    category: string;
-    price: number;
-    image: {
-        thumbnail: string;
-        mobile: string;
-        tablet: string;
-        desktop: string;
-    };
+    function handleReset() {
+        setCartItems([]);
+        setOrderConfirmed(false);
+    }
+
+    return (
+        <>
+            <div className="max-w-[1216px] mx-6 py-6 grid gap-8 lg:grid-cols-[1fr_384px] items-start text-rose-900 lg:mx-auto">
+                <Desserts cartItems={cartItems} onAddToCart={handleAddToCart} onDecrement={handleDecrement} onIncrement={handleIncrement} />
+                <Cart cartItems={cartItems} onRemoveItem={handleRemoveFromCart} onConfirmOrder={handleConfirmOrder} />
+            </div>
+            {orderConfirmed && (
+                <Modal onBackdropClick={() => setOrderConfirmed(false)}>
+                    <ConfirmedOrder order={cartItems} onStartNewOrder={handleReset} />
+                </Modal>
+            )}
+        </>
+    );
 }
 
 export default App;
