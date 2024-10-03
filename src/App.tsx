@@ -32,11 +32,15 @@ function App() {
     }
 
     function handleIncrement(name: string) {
-        setCartItems(prevState => prevState.map(item => (item.name === name ? { ...item, amount: item.amount++ } : item)));
+        console.log('increment');
+
+        setCartItems(prevState => prevState.map(item => (item.name === name ? { ...item, amount: item.amount + 1 } : item)));
     }
 
     function handleDecrement(name: string) {
-        setCartItems(prevState => prevState.map(item => (item.name === name ? { ...item, amount: item.amount-- } : item)).filter(item => item.amount > 0));
+        console.log('decrement');
+
+        setCartItems(prevState => prevState.map(item => (item.name === name ? { ...item, amount: item.amount - 1 } : item)).filter(item => item.amount > 0));
     }
 
     function handleConfirmOrder() {

@@ -13,7 +13,7 @@ type AppProps = {
 export default function DessertItem({ dessert, cartItems, onAddToCart, onDecrement, onIncrement }: AppProps) {
     const { name, category, price, image } = dessert;
 
-    const cartAmount = cartItems.find(item => item.name === dessert.name)?.amount || 0;
+    const cartAmount = cartItems.find(item => item.name === name)?.amount || 0;
 
     function handleDecrement() {
         onDecrement(name);
