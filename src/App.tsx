@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Desserts, { DessertType } from './Desserts';
-import Cart, { CartItemType } from './Cart';
+import Desserts, { DessertType } from './components/Desserts';
+import Cart, { CartItemType } from './components/Cart';
 import ConfirmedOrder from './components/ConfirmedOrder';
 import Modal from './components/Modal';
 
@@ -24,9 +24,7 @@ function App() {
             amount: 1,
         };
 
-        setCartItems(prevState => {
-            return [...prevState, newItem];
-        });
+        setCartItems(prevState => [...prevState, newItem]);
     }
 
     function handleRemoveFromCart(name: string) {
@@ -52,7 +50,7 @@ function App() {
 
     return (
         <>
-            <div className="max-w-[1216px] mx-6 py-6 grid gap-8 lg:grid-cols-[1fr_384px] items-start text-rose-900 lg:mx-auto">
+            <div className="max-w-[1216px] my-6 md:my-10 lg:my-[88px] mx-6 grid gap-8 lg:grid-cols-[1fr_384px] items-start text-rose-900 lg:mx-auto">
                 <Desserts cartItems={cartItems} onAddToCart={handleAddToCart} onDecrement={handleDecrement} onIncrement={handleIncrement} />
                 <Cart cartItems={cartItems} onRemoveItem={handleRemoveFromCart} onConfirmOrder={handleConfirmOrder} />
             </div>

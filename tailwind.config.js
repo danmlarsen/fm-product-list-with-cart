@@ -9,6 +9,10 @@ export default {
             md: '768px',
             lg: '1260px',
         },
+        fontSize: {
+            ...defaultTheme.fontSize,
+            '4xl': '40px',
+        },
         extend: {
             colors: {
                 rose: {
@@ -20,6 +24,7 @@ export default {
                     50: '#FCF8F6',
                 },
                 red: '#C73B0F',
+                'dark-red': '#952c0b',
                 green: '#1EA575',
             },
             fontFamily: {

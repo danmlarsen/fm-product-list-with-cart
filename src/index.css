@@ -15,8 +15,3 @@
         font-style: italic;
     }
 }
-
-::backdrop {
-    background-color: #000;
-    opacity: 0.75;
-}

@@ -1,4 +1,4 @@
-import { CartItemType } from '../Cart';
+import { CartItemType } from '../components/Cart';
 
 type AppProps = {
     cartItem: CartItemType;
@@ -7,7 +7,6 @@ type AppProps = {
 
 export default function CartItem({ cartItem, onRemoveItem }: AppProps) {
     const { name, price, amount } = cartItem;
-
     const totalPrice = price * amount;
 
     return (

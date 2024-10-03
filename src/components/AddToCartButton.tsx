@@ -8,7 +8,7 @@ type AppProps = {
 };
 
 export default function AddToCartButton({ cartAmount, onAdd, onDecrement, onIncrement }: AppProps) {
-    const baseClasses = 'w-[160px] h-[44px] p-3 flex items-center justify-center gap-2 font-semibold rounded-full transition duration-200';
+    const baseClasses = 'w-[160px] h-[44px] p-3 flex items-center justify-center gap-2 text-sm font-semibold rounded-full transition duration-200';
 
     return cartAmount > 0 ? (
         <div className={`${baseClasses} justify-between bg-red text-white border border-red`}>

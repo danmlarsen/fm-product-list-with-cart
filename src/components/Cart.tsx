@@ -1,7 +1,7 @@
-import CartItem from './assets/CartItem';
-import EmptyCartIllustration from './assets/images/illustration-empty-cart.svg';
-import IconCarbonNeutral from './assets/images/icon-carbon-neutral.svg';
-import Button from './components/Button';
+import CartItem from '../assets/CartItem';
+import EmptyCartIllustration from '../assets/images/illustration-empty-cart.svg';
+import IconCarbonNeutral from '../assets/images/icon-carbon-neutral.svg';
+import Button from './Button';
 
 export interface CartItemType {
     name: string;
@@ -25,9 +25,9 @@ export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppPro
             <h2 className="text-2xl font-bold text-red">Your Cart ({orderItemAmount})</h2>
 
             {cartItems.length === 0 && (
-                <div className="py-4 flex flex-col items-center gap-6">
-                    <img src={EmptyCartIllustration} alt="" />
-                    <p className="text-rose-500">Your added items will appear here</p>
+                <div className="py-4 flex flex-col items-center gap-4">
+                    <img src={EmptyCartIllustration} alt="Illustration of a cake" />
+                    <p className="text-rose-500 text-sm font-semibold">Your added items will appear here</p>
                 </div>
             )}
             {cartItems.length > 0 && (

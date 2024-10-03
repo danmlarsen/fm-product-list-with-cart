@@ -1,4 +1,4 @@
-import { CartItemType } from '../Cart';
+import { CartItemType } from './Cart';
 
 type AppProps = {
     orderItem: CartItemType;
@@ -6,7 +6,6 @@ type AppProps = {
 
 export default function ConfirmedOrderItem({ orderItem }: AppProps) {
     const { name, price, amount, image } = orderItem;
-
     const totalPrice = price * amount;
 
     return (

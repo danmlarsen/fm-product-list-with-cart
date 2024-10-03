@@ -1,5 +1,5 @@
 import ConfirmedOrderItem from './ConfirmedOrderItem';
-import { CartItemType } from '../Cart';
+import { CartItemType } from './Cart';
 
 import IconOrderConfirmed from '../assets/images/icon-order-confirmed.svg';
 import Button from './Button';

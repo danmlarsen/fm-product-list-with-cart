@@ -1,6 +1,6 @@
 import { DessertType } from './Desserts';
 import { CartItemType } from './Cart';
-import AddToCartButton from './components/AddToCartButton';
+import AddToCartButton from './AddToCartButton';
 
 type AppProps = {
     dessert: DessertType;
@@ -29,16 +29,16 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
                 <picture>
                     <source srcSet={image.desktop} media="(min-width: 1200px)" />
                     <source srcSet={image.tablet} media="(min-width: 600px)" />
-                    <img className="object-cover w-full" src={image.mobile} alt="" />
+                    <img className="object-cover w-full" src={image.mobile} alt={`Image of ${name}`} />
                 </picture>
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
                     <AddToCartButton onAdd={() => onAddToCart(dessert)} cartAmount={cartAmount} onDecrement={handleDecrement} onIncrement={handleIncrement} />
                 </div>
             </div>
-            <div>
-                <p className="text-rose-500">{category}</p>
-                <p className="font-semibold">{name}</p>
-                <p className="text-red font-semibold">${price}</p>
+            <div className="space-y-1">
+                <p className="text-rose-500 text-sm leading-[1.325]">{category}</p>
+                <p className="font-semibold leading-[1.325]">{name}</p>
+                <p className="text-red font-semibold leading-[1.325]">${price.toFixed(2)}</p>
             </div>
         </li>
     );
