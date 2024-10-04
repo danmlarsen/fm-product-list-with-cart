@@ -27,11 +27,14 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
         <li>
             <article>
                 <div className="relative mb-[38px]">
-                    <picture>
-                        <source srcSet={image.desktop} media="(min-width: 1260px)" />
-                        <source srcSet={image.tablet} media="(min-width: 600px)" />
-                        <img className="object-cover w-full" src={image.mobile} alt={`Image of ${name}`} />
-                    </picture>
+                    <div className={`rounded-lg overflow-hidden transition duration-500 border-2 ${cartAmount > 0 ? 'border-red' : 'border-transparent'}`}>
+                        <picture>
+                            <source srcSet={image.desktop} media="(min-width: 1260px)" />
+                            <source srcSet={image.tablet} media="(min-width: 600px)" />
+                            <img className="object-cover w-full h-[212px] lg:h-[240px]" src={image.mobile} alt={`Image of ${name}`} />
+                        </picture>
+                    </div>
+
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
                         <AddToCartButton onAdd={() => onAddToCart(dessert)} cartAmount={cartAmount} onDecrement={handleDecrement} onIncrement={handleIncrement} />
                     </div>
