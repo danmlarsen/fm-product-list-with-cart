@@ -25,7 +25,7 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
 
     return (
         <li>
-            <article>
+            <article aria-labelledby={`${name} dessert-item`}>
                 <div className="relative mb-[38px]">
                     <picture>
                         <source srcSet={image.desktop} media="(min-width: 1260px)" />
@@ -38,7 +38,9 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
                 </div>
                 <div className="space-y-1">
                     <p className="text-rose-500 text-sm leading-[1.325]">{category}</p>
-                    <p className="font-semibold leading-[1.325]">{name}</p>
+                    <h2 className="font-semibold leading-[1.325]" id={`${name} dessert-item`}>
+                        {name}
+                    </h2>
                     <p className="text-red font-semibold leading-[1.325]">${price.toFixed(2)}</p>
                 </div>
             </article>
