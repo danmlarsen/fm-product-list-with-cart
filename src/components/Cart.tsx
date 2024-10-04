@@ -21,7 +21,7 @@ export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppPro
     const orderItemAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
 
     return (
-        <div className="p-6 bg-white rounded-xl space-y-6 max-w-3xl w-full justify-self-center">
+        <aside className="p-6 bg-white rounded-xl space-y-6 max-w-3xl w-full justify-self-center">
             <h2 className="text-2xl font-bold text-red">Your Cart ({orderItemAmount})</h2>
 
             {cartItems.length === 0 && (
@@ -52,6 +52,6 @@ export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppPro
                     </div>
                 </>
             )}
-        </div>
+        </aside>
     );
 }

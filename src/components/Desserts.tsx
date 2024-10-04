@@ -25,13 +25,13 @@ type AppProps = {
 
 export default function Desserts({ cartItems, onAddToCart, onDecrement, onIncrement }: AppProps) {
     return (
-        <div className="space-y-8">
+        <main className="space-y-8">
             <h1 className="text-4xl font-bold leading-[1.2]">Desserts</h1>
             <ul className="grid gap-6 md:gap-y-8 sm:grid-cols-2 md:grid-cols-3">
                 {desserts.map(dessert => (
                     <DessertItem key={dessert.name} dessert={dessert} cartItems={cartItems} onAddToCart={onAddToCart} onDecrement={onDecrement} onIncrement={onIncrement} />
                 ))}
             </ul>
-        </div>
+        </main>
     );
 }

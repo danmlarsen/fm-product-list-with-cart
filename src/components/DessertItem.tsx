@@ -25,21 +25,23 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
 
     return (
         <li>
-            <div className="relative mb-[38px]">
-                <picture>
-                    <source srcSet={image.desktop} media="(min-width: 1260px)" />
-                    <source srcSet={image.tablet} media="(min-width: 600px)" />
-                    <img className="object-cover w-full" src={image.mobile} alt={`Image of ${name}`} />
-                </picture>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                    <AddToCartButton onAdd={() => onAddToCart(dessert)} cartAmount={cartAmount} onDecrement={handleDecrement} onIncrement={handleIncrement} />
+            <article>
+                <div className="relative mb-[38px]">
+                    <picture>
+                        <source srcSet={image.desktop} media="(min-width: 1260px)" />
+                        <source srcSet={image.tablet} media="(min-width: 600px)" />
+                        <img className="object-cover w-full" src={image.mobile} alt={`Image of ${name}`} />
+                    </picture>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+                        <AddToCartButton onAdd={() => onAddToCart(dessert)} cartAmount={cartAmount} onDecrement={handleDecrement} onIncrement={handleIncrement} />
+                    </div>
                 </div>
-            </div>
-            <div className="space-y-1">
-                <p className="text-rose-500 text-sm leading-[1.325]">{category}</p>
-                <p className="font-semibold leading-[1.325]">{name}</p>
-                <p className="text-red font-semibold leading-[1.325]">${price.toFixed(2)}</p>
-            </div>
+                <div className="space-y-1">
+                    <p className="text-rose-500 text-sm leading-[1.325]">{category}</p>
+                    <p className="font-semibold leading-[1.325]">{name}</p>
+                    <p className="text-red font-semibold leading-[1.325]">${price.toFixed(2)}</p>
+                </div>
+            </article>
         </li>
     );
 }
