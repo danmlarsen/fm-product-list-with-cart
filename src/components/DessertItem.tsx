@@ -27,7 +27,7 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
         <li>
             <div className="relative mb-[38px]">
                 <picture>
-                    <source srcSet={image.desktop} media="(min-width: 1200px)" />
+                    <source srcSet={image.desktop} media="(min-width: 1260px)" />
                     <source srcSet={image.tablet} media="(min-width: 600px)" />
                     <img className="object-cover w-full" src={image.mobile} alt={`Image of ${name}`} />
                 </picture>

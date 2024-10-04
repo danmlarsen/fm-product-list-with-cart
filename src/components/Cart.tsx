@@ -1,4 +1,4 @@
-import CartItem from '../assets/CartItem';
+import CartItem from './CartItem';
 import EmptyCartIllustration from '../assets/images/illustration-empty-cart.svg';
 import IconCarbonNeutral from '../assets/images/icon-carbon-neutral.svg';
 import Button from './Button';

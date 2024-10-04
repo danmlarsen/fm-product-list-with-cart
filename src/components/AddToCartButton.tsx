@@ -12,13 +12,21 @@ export default function AddToCartButton({ cartAmount, onAdd, onDecrement, onIncr
 
     return cartAmount > 0 ? (
         <div className={`${baseClasses} justify-between bg-red text-white border border-red`}>
-            <button className="size-5 flex items-center justify-center rounded-full border-2 transition duration-200 hover:bg-white hover:text-red" onClick={onDecrement}>
+            <button
+                className="size-5 flex items-center justify-center rounded-full border-2 transition duration-200 hover:bg-white hover:text-red"
+                onClick={onDecrement}
+                aria-label="Decrease number of item"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
                     <path style={{ fill: 'currentcolor' }} d="M0 .375h10v1.25H0V.375Z" />
                 </svg>
             </button>
             <span className="min-w-5 text-center">{cartAmount}</span>
-            <button className="size-5 flex items-center justify-center rounded-full border-2 transition duration-200 hover:bg-white hover:text-red" onClick={onIncrement}>
+            <button
+                className="size-5 flex items-center justify-center rounded-full border-2 transition duration-200 hover:bg-white hover:text-red"
+                onClick={onIncrement}
+                aria-label="Increase number of item"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
                     <path style={{ fill: 'currentcolor' }} d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z" />
                 </svg>
