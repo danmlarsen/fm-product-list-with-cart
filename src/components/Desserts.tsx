@@ -2,8 +2,6 @@ import desserts from '../data.json';
 
 import DessertItem from './DessertItem';
 
-import { CartItemType } from './Cart';
-
 export interface DessertType {
     name: string;
     category: string;
@@ -16,20 +14,13 @@ export interface DessertType {
     };
 }
 
-type AppProps = {
-    cartItems: CartItemType[];
-    onAddToCart: (dessert: DessertType) => void;
-    onDecrement: (name: string) => void;
-    onIncrement: (name: string) => void;
-};
-
-export default function Desserts({ cartItems, onAddToCart, onDecrement, onIncrement }: AppProps) {
+export default function Desserts() {
     return (
         <main className="space-y-8">
             <h1 className="text-4xl font-bold leading-[1.2]">Desserts</h1>
             <ul className="grid gap-6 md:gap-y-8 sm:grid-cols-2 md:grid-cols-3">
                 {desserts.map(dessert => (
-                    <DessertItem key={dessert.name} dessert={dessert} cartItems={cartItems} onAddToCart={onAddToCart} onDecrement={onDecrement} onIncrement={onIncrement} />
+                    <DessertItem key={dessert.name} dessert={dessert} />
                 ))}
             </ul>
         </main>

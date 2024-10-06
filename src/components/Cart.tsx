@@ -2,6 +2,8 @@ import CartItem from './CartItem';
 import EmptyCartIllustration from '../assets/images/illustration-empty-cart.svg';
 import IconCarbonNeutral from '../assets/images/icon-carbon-neutral.svg';
 import Button from './Button';
+import { useContext } from 'react';
+import { CartContext, CartContextType } from '../context/CartContext';
 
 export interface CartItemType {
     name: string;
@@ -10,13 +12,9 @@ export interface CartItemType {
     amount: number;
 }
 
-type AppProps = {
-    cartItems: CartItemType[];
-    onRemoveItem: (name: string) => void;
-    onConfirmOrder: () => void;
-};
+export default function Cart() {
+    const { cartItems, handleConfirmOrder } = useContext(CartContext) as CartContextType;
 
-export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppProps) {
     const orderTotal = cartItems.reduce((acc, cur) => acc + cur.price * cur.amount, 0);
     const orderItemAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
 
@@ -34,7 +32,7 @@ export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppPro
                 <>
                     <ul>
                         {cartItems.map(cartItem => (
-                            <CartItem key={cartItem.name} cartItem={cartItem} onRemoveItem={onRemoveItem} />
+                            <CartItem key={cartItem.name} cartItem={cartItem} />
                         ))}
                     </ul>
                     <div className="flex justify-between items-center">
@@ -48,7 +46,7 @@ export default function Cart({ cartItems, onRemoveItem, onConfirmOrder }: AppPro
                         </p>
                     </div>
                     <div>
-                        <Button onClick={onConfirmOrder}>Confirm Order</Button>
+                        <Button onClick={handleConfirmOrder}>Confirm Order</Button>
                     </div>
                 </>
             )}

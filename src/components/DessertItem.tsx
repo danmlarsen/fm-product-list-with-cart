@@ -1,27 +1,22 @@
+import { useContext } from 'react';
+import { CartContext, CartContextType } from '../context/CartContext';
 import { DessertType } from './Desserts';
-import { CartItemType } from './Cart';
 import AddToCartButton from './AddToCartButton';
 
 type AppProps = {
     dessert: DessertType;
-    cartItems: CartItemType[];
-    onAddToCart: (dessert: DessertType) => void;
-    onDecrement: (name: string) => void;
-    onIncrement: (name: string) => void;
+    // cartItems: CartItemType[];
+    // onAddToCart: (dessert: DessertType) => void;
+    // onDecrement: (name: string) => void;
+    // onIncrement: (name: string) => void;
 };
 
-export default function DessertItem({ dessert, cartItems, onAddToCart, onDecrement, onIncrement }: AppProps) {
+export default function DessertItem({ dessert }: AppProps) {
+    const { cartItems, handleDecrement, handleIncrement, handleAddToCart } = useContext(CartContext) as CartContextType;
+
     const { name, category, price, image } = dessert;
 
     const cartAmount = cartItems.find(item => item.name === name)?.amount || 0;
-
-    function handleDecrement() {
-        onDecrement(name);
-    }
-
-    function handleIncrement() {
-        onIncrement(name);
-    }
 
     return (
         <li>
@@ -36,7 +31,7 @@ export default function DessertItem({ dessert, cartItems, onAddToCart, onDecreme
                     </div>
 
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                        <AddToCartButton onAdd={() => onAddToCart(dessert)} cartAmount={cartAmount} onDecrement={handleDecrement} onIncrement={handleIncrement} />
+                        <AddToCartButton onAdd={() => handleAddToCart(dessert)} cartAmount={cartAmount} onDecrement={() => handleDecrement(name)} onIncrement={() => handleIncrement(name)} />
                     </div>
                 </div>
                 <div className="space-y-1">
