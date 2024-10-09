@@ -13,7 +13,7 @@ export interface CartItemType {
 }
 
 export default function Cart() {
-    const { cartItems, handleConfirmOrder } = useContext(CartContext) as CartContextType;
+    const { cartItems, dispatch } = useContext(CartContext) as CartContextType;
 
     const orderTotal = cartItems.reduce((acc, cur) => acc + cur.price * cur.amount, 0);
     const orderItemAmount = cartItems.reduce((acc, cur) => acc + cur.amount, 0);
@@ -46,7 +46,7 @@ export default function Cart() {
                         </p>
                     </div>
                     <div>
-                        <Button onClick={handleConfirmOrder}>Confirm Order</Button>
+                        <Button onClick={() => dispatch({ type: 'confirmOrder' })}>Confirm Order</Button>
                     </div>
                 </>
             )}

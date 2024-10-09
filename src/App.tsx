@@ -7,7 +7,7 @@ import ConfirmedOrder from './components/ConfirmedOrder';
 import Modal from './components/Modal';
 
 function App() {
-    const { orderConfirmed, setOrderConfirmed, cartItems, handleReset } = useContext(CartContext) as CartContextType;
+    const { orderConfirmed, cartItems, dispatch } = useContext(CartContext) as CartContextType;
 
     return (
         <>
@@ -16,8 +16,8 @@ function App() {
                 <Cart />
             </div>
             {orderConfirmed && (
-                <Modal onBackdropClick={() => setOrderConfirmed(false)}>
-                    <ConfirmedOrder order={cartItems} onStartNewOrder={handleReset} />
+                <Modal onBackdropClick={() => dispatch({ type: 'closeOrder' })}>
+                    <ConfirmedOrder order={cartItems} onStartNewOrder={() => dispatch({ type: 'reset' })} />
                 </Modal>
             )}
         </>

@@ -7,7 +7,7 @@ type AppProps = {
 };
 
 export default function CartItem({ cartItem }: AppProps) {
-    const { handleRemoveFromCart } = useContext(CartContext) as CartContextType;
+    const { dispatch } = useContext(CartContext) as CartContextType;
 
     const { name, price, amount } = cartItem;
     const totalPrice = price * amount;
@@ -25,7 +25,7 @@ export default function CartItem({ cartItem }: AppProps) {
             <div>
                 <button
                     className="border-2 border-rose-400 rounded-full size-5 flex items-center justify-center text-rose-400 transition duration-200 hover:border-black hover:text-black"
-                    onClick={() => handleRemoveFromCart(name)}
+                    onClick={() => dispatch({ type: 'cart/removeItem', payload: name })}
                     aria-label="Remove item from cart"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">

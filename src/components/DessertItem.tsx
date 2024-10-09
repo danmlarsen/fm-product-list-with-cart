@@ -12,11 +12,22 @@ type AppProps = {
 };
 
 export default function DessertItem({ dessert }: AppProps) {
-    const { cartItems, handleDecrement, handleIncrement, handleAddToCart } = useContext(CartContext) as CartContextType;
+    const { cartItems, dispatch } = useContext(CartContext) as CartContextType;
 
     const { name, category, price, image } = dessert;
 
     const cartAmount = cartItems.find(item => item.name === name)?.amount || 0;
+
+    function handleAddToCart() {
+        const newItem = {
+            name: name,
+            image: image.thumbnail,
+            price: price,
+            amount: 1,
+        };
+
+        dispatch({ type: 'cart/addItem', payload: newItem });
+    }
 
     return (
         <li>
@@ -31,7 +42,12 @@ export default function DessertItem({ dessert }: AppProps) {
                     </div>
 
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                        <AddToCartButton onAdd={() => handleAddToCart(dessert)} cartAmount={cartAmount} onDecrement={() => handleDecrement(name)} onIncrement={() => handleIncrement(name)} />
+                        <AddToCartButton
+                            onAdd={handleAddToCart}
+                            cartAmount={cartAmount}
+                            onDecrement={() => dispatch({ type: 'cart/decrementItem', payload: name })}
+                            onIncrement={() => dispatch({ type: 'cart/incrementItem', payload: name })}
+                        />
                     </div>
                 </div>
                 <div className="space-y-1">
